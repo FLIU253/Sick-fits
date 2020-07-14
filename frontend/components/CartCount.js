@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import styled from 'styled-components';
 
 const AnimationStyles = styled.span`
   position: relative;
@@ -11,11 +11,10 @@ const AnimationStyles = styled.span`
     transition: all 0.4s;
     backface-visibility: hidden;
   }
-  /* Initial state of the entered dot */
+  /* Initial State of the entered Dot */
   .count-enter {
     transform: scale(4) rotateX(0.5turn);
   }
-
   .count-enter-active {
     transform: rotateX(0);
   }
@@ -42,22 +41,23 @@ const Dot = styled.div`
   font-variant-numeric: tabular-nums;
 `;
 
-export default class CartCount extends Component {
-  render() {
-    return (
-      <AnimationStyles>
-        <TransitionGroup>
-          <CSSTransition
-            unmountOnExit
-            classNames="count"
-            className="count"
-            key={this.props.count}
-            timeoout={{ enter: 400, exit: 400 }}
-          >
-            <Dot>{this.props.count}</Dot>
-          </CSSTransition>
-        </TransitionGroup>
-      </AnimationStyles>
-    );
-  }
-}
+const CartCount = ({ count }) => (
+  <AnimationStyles>
+    <TransitionGroup>
+      <CSSTransition
+        unmountOnExit
+        className="count"
+        classNames="count"
+        key={count}
+        timeout={{ enter: 400, exit: 400 }}
+      >
+        <Dot>{count}</Dot>
+      </CSSTransition>
+    </TransitionGroup>
+  </AnimationStyles>
+);
+
+CartCount.propTypes = {
+  count: PropTypes.number.isRequired,
+};
+export default CartCount;
