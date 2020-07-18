@@ -34,7 +34,10 @@ server.express.use(async (req, res, next) => {
 });
 
 server.express.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+  res.header(
+    'Access-Control-Allow-Origin',
+    'https://fliu-sickfits-next-prod.herokuapp.com/'
+  );
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
